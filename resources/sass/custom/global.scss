@@ -1,0 +1,106 @@
+html { overflow-y: auto }
+
+.v-application {
+    background-color: var(--v-background-base) !important;
+}
+.container {
+    max-width: 1920px;
+}
+a {
+    text-decoration: none;
+}
+a:hover {
+    text-decoration:none;
+}
+.v-tab {
+    text-transform: none;
+}
+.v-btn {
+    text-transform: none;
+    &:focus {
+        outline: none;
+    }
+}
+.v-dialog {
+    ::-webkit-scrollbar {
+        width: 12px;
+    }
+    ::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0, 0.9);
+    }
+}
+.h-100 {
+    height: 100%;
+}
+.header-bottom {
+    background: white;
+}
+.header.sticky-top {
+    z-index: 1;
+}
+.sticky-top {
+    position: sticky;
+    top: 0;
+    & + .sticky-top {
+        top: 64px;
+    }
+}
+.v-data-table {
+    table {
+        border-collapse: separate !important;
+        border-spacing: 0;
+        tr {
+            th {
+                font-weight: 400 !important;
+                font-size: 14px !important;
+                line-height: 24px !important;
+                letter-spacing: 0.15px !important;
+                background: #494949 !important;
+                color: #ffffff !important;
+            }
+            td {
+                font-weight: 400px;
+                font-size: 14px;
+                line-height: 21px;
+                letter-spacing: 0.1px;
+            }
+        }
+    }
+    ::-webkit-scrollbar {
+        width: 13px;
+        height: 13px;
+    }
+    ::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(255,255,255, 0.5);
+    }
+    ::-webkit-scrollbar-corner {
+        -webkit-box-shadow: inset 0 0 6px rgba(255,255,255, 0.5);
+    }
+}
+.avatar-cropper-container {
+    .avatar-cropper-footer {
+        background: #282828 !important;
+        button:hover {
+            background: #449D48 !important;
+        }
+    }
+}
+.v-card__text, .v-card__title {
+    word-break: normal !important;
+}
+.sidebar-right {
+    .content {
+        height: calc( 100vh - 96px );
+        overflow: auto;
+    }
+}
