@@ -15,7 +15,8 @@ class BookController extends CoreController
 		$q = [
 			'take' => ( $request->has('take') ) ? $request->take : 25,
 			's' => ( $request->has('s') ) ? explode(' ', $request->s) : [],
-            'order' => ( $request->has('order') ? $request->order : 'Asc' )
+            'order' => ( $request->has('order') ? $request->order : 'Asc' ),
+            'year' => ( $request->has('year') ? $request->year : 'Asc' )
 		];
         $query = Book::query();
 
@@ -31,8 +32,12 @@ class BookController extends CoreController
             $query->where('category_id' , $request->category_id );
         endif;
         $query->with('category');
-        $query->orderBy( 'publisher_date' , $q['order'] );
-        $query->orderBy( 'title' , $q['order'] );
+        if ( $request->has('year') ) :
+            $query->orderBy( 'publisher_date' , $q['year'] );
+        endif;
+        if ( $request->has('order') ) :
+            $query->orderBy( 'title' , $q['order'] );
+        endif;
 
 		$rows = $query->paginate( $q['take'] );
         foreach( $rows as $row ) :
@@ -49,8 +54,9 @@ class BookController extends CoreController
     }
     public function me( Request $request )
     {
-
-		$this->addData( 'rows' , $this->getUser()->books );
+        $books = $this->getUser()->books()->with('category')->get();
+        
+		$this->addData( 'rows' , $books );
 		return $this->result();
     }
 }

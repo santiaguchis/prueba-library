@@ -5,11 +5,10 @@
             <div class="text-h6 book-title mb-1" v-text="item.title"></div>
             <div class="text-overline book-author" v-text="item.author"></div>
             <div class="d-flex align-center">
-                <v-icon>mdi-calendar</v-icon><span class="ml-2 text-overline"> {{ item.publisher_date }}</span>
-                <v-spacer></v-spacer>
                 <v-icon>mdi-tag</v-icon><span class="ml-2 text-overline">{{ item.category.name }}</span>
             </div>
             <div class="d-flex align-center">
+                <v-icon>mdi-calendar</v-icon><span class="ml-2 mr-2 text-overline"> {{ item.publisher_date }}</span>
                 <v-icon>mdi-book-open</v-icon><span class="ml-2 text-overline"> {{ item.pages }}</span>
                 <v-spacer></v-spacer>
                 Disponibles: <span class="ml-2 text-overline">{{ item.available }}</span>

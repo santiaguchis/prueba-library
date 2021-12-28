@@ -4,7 +4,7 @@
         <v-text-field
             dense
             rounded
-            style="max-width: 160px"
+            style="max-width: 180px"
             class="ml-2"
             :hide-details="true"
             placeholder="Búscar"
@@ -15,15 +15,28 @@
             outlined
             ></v-text-field>
         <v-select
-            :items="orders"
+            :items="order"
             :hide-details="true"
             dense
             class="ml-2"
             v-model="filter.order"
-            style="max-width: 160px"
+            :clearable="true"
+            style="max-width: 200px"
             outlined
             rounded
-            label="Ordenar por título:"
+            label="Orden por título:"
+            ></v-select>
+        <v-select
+            :items="orderYear"
+            :hide-details="true"
+            dense
+            class="ml-2"
+            v-model="filter.year"
+            :clearable="true"
+            style="max-width: 200px"
+            outlined
+            rounded
+            label="Orden por año:"
             ></v-select>
         <v-select
             :items="categories"
@@ -33,7 +46,7 @@
             v-model="filter.category_id"
             item-value="id"
             item-text="name"
-            style="max-width: 260px"
+            style="max-width: 240px"
             outlined
             rounded
             :clearable="true"
@@ -60,9 +73,13 @@ export default {
             filter: {
                 s : '',
                 order: 'Asc',
+                year: 'Asc',
                 category_id: 0
             },
-            orders: [
+            order: [
+                'Asc' , 'Desc'
+            ],
+            orderYear: [
                 'Asc' , 'Desc'
             ]
         }

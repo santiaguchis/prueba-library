@@ -24,6 +24,7 @@ export default {
                 .then( response=> {
                     commit('setMyBooks' , response.data.data.rows )
                     commit( 'Shared/HIDE_LOADING_PAGE' , null, { root : true } )
+                    commit( 'Auth/setPermissions' , response.data.permissions, { root : true } )
                     resolve( response.data )
                 })
                 .catch( failure => {

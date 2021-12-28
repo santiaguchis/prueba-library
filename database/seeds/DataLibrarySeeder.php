@@ -35,7 +35,7 @@ class DataLibrarySeeder extends Seeder
 
             $newBook = Book::create([
                 'id' => $book->ID,
-                'title' => $book->title,
+                'title' => trim( $book->title ),
                 'author' => $book->author,
                 'content' => $book->content_short,
                 'pages' => $book->pages,
