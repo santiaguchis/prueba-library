@@ -17,7 +17,7 @@ class RentBookController extends CoreController
             $take = ['book_id'];
             $input = $request->only( $take );
             $ifBook = Book::whereHas('users', function( $query ){
-                $query->whereIn('id', [ 1 ]);
+                $query->whereIn('id', [ $this->getUser()->id ]);
             })->find( $input['book_id'] );
             $book = Book::find( $input['book_id'] );
             if ( $ifBook ) :
