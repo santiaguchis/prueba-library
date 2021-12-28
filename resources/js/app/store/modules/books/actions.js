@@ -1,5 +1,6 @@
 export default {
     getBooks( { commit , dispatch } , params  ) {
+        commit('setBooks' , { data: [] , total : 0 } )
         commit( 'Shared/SHOW_LOADING_PAGE' , null, { root : true } )
         return new Promise( (resolve, reject) => {
             axios.get( 'books' , { params : params } )

@@ -2783,6 +2783,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2794,13 +2803,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     BookRentModal: _components_BookRentModal__WEBPACK_IMPORTED_MODULE_2__["default"],
     BookFilterToolbar: _components_BookFilterToolbar__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
+  data: function data() {
+    return {
+      params: {}
+    };
+  },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
     books: 'Books/getBooks',
     permissions: 'Auth/getPermissions'
   })),
   methods: {
+    pagination: function pagination() {
+      var page = this.books.current_page;
+      this.params.page = page++;
+      this.$store.dispatch('Books/getBooks', this.params);
+    },
     onSearch: function onSearch(params) {
-      this.$store.dispatch('Books/getBooks', params);
+      this.params = params;
+      this.$store.dispatch('Books/getBooks', this.params);
     }
   },
   mounted: function mounted() {
@@ -22917,6 +22937,7 @@ var render = function () {
         [
           _c("div", {
             staticClass: "text-h6 book-title mb-1",
+            attrs: { title: _vm.item.title },
             domProps: { textContent: _vm._s(_vm.item.title) },
           }),
           _vm._v(" "),
@@ -23356,6 +23377,33 @@ var render = function () {
                 1
               )
             }),
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "text-center mt-2" },
+            [
+              _c("v-pagination", {
+                attrs: {
+                  length: _vm.books.last_page,
+                  "total-visible": 7,
+                  circle: "",
+                },
+                on: {
+                  input: function ($event) {
+                    return _vm.pagination()
+                  },
+                },
+                model: {
+                  value: _vm.books.current_page,
+                  callback: function ($$v) {
+                    _vm.$set(_vm.books, "current_page", $$v)
+                  },
+                  expression: "books.current_page",
+                },
+              }),
+            ],
             1
           ),
         ],
@@ -87533,6 +87581,10 @@ __webpack_require__.r(__webpack_exports__);
   getBooks: function getBooks(_ref, params) {
     var commit = _ref.commit,
         dispatch = _ref.dispatch;
+    commit('setBooks', {
+      data: [],
+      total: 0
+    });
     commit('Shared/SHOW_LOADING_PAGE', null, {
       root: true
     });

@@ -11,6 +11,15 @@
                     <book-card :item="row" :permissions="permissions"></book-card>
                 </v-col>
             </v-row>
+            <div class="text-center mt-2">
+                <v-pagination
+                v-model="books.current_page"
+                :length="books.last_page"
+                :total-visible="7"
+                circle
+                @input="pagination()"
+                ></v-pagination>
+            </div>
         </v-container>
         <book-rent-modal></book-rent-modal>
     </div>
@@ -29,6 +38,11 @@ export default {
         BookRentModal,
         BookFilterToolbar
     },
+    data() {
+        return { 
+            params: {}
+        }
+    },
     computed: {
         ...mapGetters({
             books: 'Books/getBooks',
@@ -36,8 +50,14 @@ export default {
         })
     },
     methods: {
+        pagination() {
+            let page = this.books.current_page;
+            this.params.page = page++;
+            this.$store.dispatch('Books/getBooks', this.params );
+        },
         onSearch( params ) {
-            this.$store.dispatch('Books/getBooks', params );
+            this.params = params
+            this.$store.dispatch('Books/getBooks', this.params );
         }
     },
     mounted() {

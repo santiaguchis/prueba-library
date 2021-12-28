@@ -2,7 +2,7 @@
     <v-card color="grey lighten-3">
         <v-img :aspect-ratio="9/12" :src="item.thumbnail"></v-img>
         <v-card-text class="d-flex flex-column">
-            <div class="text-h6 book-title mb-1" v-text="item.title"></div>
+            <div class="text-h6 book-title mb-1" :title="item.title" v-text="item.title"></div>
             <div class="text-overline book-author" v-text="item.author"></div>
             <div class="d-flex align-center">
                 <v-icon>mdi-tag</v-icon><span class="ml-2 text-overline">{{ item.category.name }}</span>
