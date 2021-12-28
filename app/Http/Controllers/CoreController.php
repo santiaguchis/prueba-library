@@ -45,7 +45,8 @@ class CoreController extends Controller
     }
     private function getPermissions(  )
 	{
-        return $this->role->permissions;
+        
+        return ( $this->role ) ? $this->role->permissions : [];
     }
     public function checkRole( $role )
 	{
