@@ -8,7 +8,7 @@
                 <v-col cols="12" sm="6" md="4" lg="3" xl="2"
                     v-for="( row , index ) in books.data"
                     :key="index">
-                    <book-card :item="row" :permissions="permissions"></book-card>
+                    <book-card :item="row" :permissions="permissions" :showActions="true"></book-card>
                 </v-col>
             </v-row>
             <div class="text-center mt-2">
@@ -22,6 +22,8 @@
             </div>
         </v-container>
         <book-rent-modal></book-rent-modal>
+        <book-edit-modal></book-edit-modal>
+        <book-delete-modal @on-refresh="onRefresh"></book-delete-modal>
     </div>
 </template>
 <script>
@@ -29,6 +31,8 @@ import { mapGetters }   from 'vuex';
 
 import BookCard         from '../components/BookCard';
 import BookRentModal    from '../components/BookRentModal';
+import BookEditModal    from '../components/BookEditModal';
+import BookDeleteModal  from '../components/BookDeleteModal';
 import BookFilterToolbar from '../components/BookFilterToolbar';
 
 export default {
@@ -36,6 +40,8 @@ export default {
     components: {
         BookCard,
         BookRentModal,
+        BookEditModal,
+        BookDeleteModal,
         BookFilterToolbar
     },
     data() {
@@ -57,6 +63,9 @@ export default {
         },
         onSearch( params ) {
             this.params = params
+            this.$store.dispatch('Books/getBooks', this.params );
+        },
+        onRefresh() {
             this.$store.dispatch('Books/getBooks', this.params );
         }
     },

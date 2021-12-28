@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Entities\Book;
 use App\Entities\Category;
 use App\Entities\Auth\User;
+use DB;
 
 class BookController extends CoreController
 {
@@ -51,6 +52,41 @@ class BookController extends CoreController
 		$this->addData( 'rows' , $rows );
 		$this->addData( 'categories' , Category::orderBy('name' , 'Asc')->get() );
 		return $this->result();
+    }
+    public function update( $id , Request $request )
+    {
+        try {
+            DB::beginTransaction();
+            $take = ['title' , 'publisher_date'];
+            $input = $request->only( $take );
+            $book = Book::find( $id );
+
+            $book->update( $input );
+            $this->addData('book', $book );
+            $this->addSuccessMessage( 'Datos actualizados correctamente' , 'Registro actualizado' );
+            DB::commit();
+        }
+        catch( \Exception $e ) {
+            $this->addErrorMessage('Ha ocurrido un error',$e->getMessage());
+            DB::rollback();
+        }
+        return $this->result();
+    }
+    public function destroy( $id , Request $request )
+    {
+        try {
+            DB::beginTransaction();
+            $book = Book::find( $id );
+            $this->addData('book', $book );
+            $book->delete();
+            $this->addSuccessMessage( 'Datos eliminados correctamente' , 'Registro eliminado' );
+            DB::commit();
+        }
+        catch( \Exception $e ) {
+            $this->addErrorMessage('Ha ocurrido un error',$e->getMessage());
+            DB::rollback();
+        }
+        return $this->result();
     }
     public function me( Request $request )
     {

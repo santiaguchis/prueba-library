@@ -8,11 +8,20 @@ export default {
     setCategories( state , data ) {
         state.categories = data
     },
+    setBook( state , book ) {
+        state.book = book
+    },
     setRentBook( state , book ) {
         state.rentBook = book
     },
     showRentBookModal( state , show ) {
         state.showRentBookModal = show
+    },
+    showEditBookModal( state , show ) {
+        state.showEditBookModal = show
+    },
+    showDeleteBookModal( state , show ) {
+        state.showDeleteBookModal = show
     },
     updateBook( state, book ) {
         state.books.data.map( (stateBook) => {

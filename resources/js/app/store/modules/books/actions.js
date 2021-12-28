@@ -47,4 +47,27 @@ export default {
                 })
         })
     },
+    updateBook( { commit } , data ) {
+        return new Promise( (resolve, reject) => {
+            axios.put( `books/${ data.id }` , data )
+                .then( response=> {
+                    commit('updateBook' , response.data.data.book )
+                    resolve( response.data )
+                })
+                .catch( failure => {
+                    reject( failure )
+                })
+        })
+    },
+    deleteBook( { commit } , data ) {
+        return new Promise( (resolve, reject) => {
+            axios.delete( `books/${ data.id }` , data )
+                .then( response=> {
+                    resolve( response.data )
+                })
+                .catch( failure => {
+                    reject( failure )
+                })
+        })
+    }
 }

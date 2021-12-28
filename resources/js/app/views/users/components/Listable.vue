@@ -4,12 +4,6 @@
             <v-toolbar-title>
                 Usuarios
             </v-toolbar-title>
-            <v-btn
-                class="ml-2 text-button"
-                color="primary">
-                <v-icon>mdi-plus</v-icon>
-                Agregar
-            </v-btn>
             <v-spacer></v-spacer>
             <div class="search-box">
                 <v-text-field

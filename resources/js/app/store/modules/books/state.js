@@ -1,10 +1,14 @@
 export default {
+    book: null,
     books: {
         total: 0,
         data: []
     },
     myBooks: [],
-    rentBook: null,
     categories: [],
-    showRentBookModal: false
+    rentBook: null,
+    editBook: null,
+    showEditBookModal: false,
+    showRentBookModal: false,
+    showDeleteBookModal: false,
 }

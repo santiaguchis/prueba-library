@@ -1,23 +1,19 @@
 <template>
     <v-dialog
-        v-model="showEditBookModal"
+        v-model="showDeleteBookModal"
         max-width="360"
         persistent
         >
         <v-card v-if="book">
             <v-toolbar dense>
-                <v-toolbar-title>Editar libro:</v-toolbar-title>
+                <v-toolbar-title>Eliminar libro:</v-toolbar-title>
             </v-toolbar>
             <v-card-text class="mt-4">
-                <v-textarea 
-                    label="Titulo"
-                    rows="3"
-                    v-model="book.title">
-                </v-textarea>
-                <v-text-field 
-                    label="Año"
-                    v-model="book.publisher_date">
-                </v-text-field>
+                <h5 class="text-h6 pa-3 text-center">
+                {{ book.title }}
+                </h5>
+                <v-img :aspect-ratio="9/12"
+                    :src="book.thumbnail"></v-img>
             </v-card-text>
             <v-card-actions>
                 <v-btn
@@ -37,8 +33,8 @@
                     :loading="loading"
                     @click="submit()"
                     class="text-button"
-                    color="green">
-                    Guardar
+                    color="red">
+                    Eliminar
                 </v-btn>
             </v-card-actions>
         </v-card>
@@ -47,7 +43,7 @@
 <script>
 import { mapGetters, mapState } from 'vuex';
 export default {
-    name: 'book-edit-modal',
+    name: 'book-delete-modal',
     data () {
         return {
             loading : false
@@ -58,17 +54,18 @@ export default {
             book: 'Books/getBook',
         }),
         ...mapState({
-            showEditBookModal:  state => state.Books.showEditBookModal
+            showDeleteBookModal:  state => state.Books.showDeleteBookModal
         })
     },
     methods: {
         submit() {
             this.loading = true
 
-            this.$store.dispatch( 'Books/updateBook' , this.book )
+            this.$store.dispatch( 'Books/deleteBook' , this.book )
                 .then(
                     ( response ) => {
                         if( response.status ) {
+                            this.$emit('on-refresh');
                             this.$toast.success( response.message.description , response.message.title )
                         } else {
                             this.$toast.warning( response.message.description , response.message.title )
@@ -81,7 +78,7 @@ export default {
                 );
         },
         hide() {
-            this.$store.commit( 'Books/showEditBookModal' , false );
+            this.$store.commit( 'Books/showDeleteBookModal' , false );
             this.$store.commit( 'Books/setBook' , null );
         }
     }

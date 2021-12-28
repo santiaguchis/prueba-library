@@ -72,8 +72,8 @@ export default {
         return { 
             filter: {
                 s : '',
-                order: 'Asc',
-                year: 'Asc',
+                order: null,
+                year: null,
                 category_id: 0
             },
             order: [

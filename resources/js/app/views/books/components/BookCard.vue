@@ -9,17 +9,20 @@
             </div>
             <div class="d-flex align-center">
                 <v-icon>mdi-calendar</v-icon><span class="ml-2 mr-2 text-overline"> {{ item.publisher_date }}</span>
+            </div>
+            <div class="d-flex align-center">
                 <v-icon>mdi-book-open</v-icon><span class="ml-2 text-overline"> {{ item.pages }}</span>
                 <v-spacer></v-spacer>
                 Disponibles: <span class="ml-2 text-overline">{{ item.available }}</span>
             </div>
-            <div v-if="permissions.update || permissions.delete"
+            <div v-if="(permissions.update || permissions.delete) && showActions"
                 class="mt-2 mb-2 d-flex justify-space-between">
                 <v-btn
                     v-if="permissions.update"
                     rounded
                     dark
                     color="light-blue"
+                    @click="showEdit()"
                     >
                     <v-icon >mdi-pencil</v-icon>
                     Editar
@@ -29,6 +32,7 @@
                     rounded
                     dark
                     color="red"
+                    @click="showDelete()"
                     >
                     <v-icon >mdi-delete</v-icon>
                     Eliminar
@@ -60,11 +64,19 @@
 <script>
 export default {
     name : 'book-card',
-    props : ['item', 'permissions'],
+    props : ['item', 'permissions', 'showActions'],
     methods : {
         showRent() {
             this.$store.commit('Books/showRentBookModal' , true );
             this.$store.commit('Books/setRentBook' , this.item );
+        },
+        showEdit() {
+            this.$store.commit('Books/showEditBookModal' , true );
+            this.$store.commit('Books/setBook' , this.item );
+        },
+        showDelete() {
+            this.$store.commit('Books/showDeleteBookModal' , true );
+            this.$store.commit('Books/setBook' , this.item );
         }
     }
 }

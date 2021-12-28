@@ -11,7 +11,16 @@ export default {
     getRentBook( state ) {
         return state.rentBook;
     },
+    getBook( state ) {
+        return state.book;
+    },
     showRentBookModal( state ) {
         return state.showRentBookModal;
+    },
+    showEditBookModal( state ) {
+        return state.showEditBookModal;
+    },
+    showDeleteBookModal( state ) {
+        return state.showDeleteBookModal;
     }
 }

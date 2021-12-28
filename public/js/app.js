@@ -2190,12 +2190,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2527,13 +2521,233 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'book-card',
-  props: ['item', 'permissions'],
+  props: ['item', 'permissions', 'showActions'],
   methods: {
     showRent: function showRent() {
       this.$store.commit('Books/showRentBookModal', true);
       this.$store.commit('Books/setRentBook', this.item);
+    },
+    showEdit: function showEdit() {
+      this.$store.commit('Books/showEditBookModal', true);
+      this.$store.commit('Books/setBook', this.item);
+    },
+    showDelete: function showDelete() {
+      this.$store.commit('Books/showDeleteBookModal', true);
+      this.$store.commit('Books/setBook', this.item);
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/app/views/books/components/BookDeleteModal.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/app/views/books/components/BookDeleteModal.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'book-delete-modal',
+  data: function data() {
+    return {
+      loading: false
+    };
+  },
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
+    book: 'Books/getBook'
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
+    showDeleteBookModal: function showDeleteBookModal(state) {
+      return state.Books.showDeleteBookModal;
+    }
+  })),
+  methods: {
+    submit: function submit() {
+      var _this = this;
+
+      this.loading = true;
+      this.$store.dispatch('Books/deleteBook', this.book).then(function (response) {
+        if (response.status) {
+          _this.$emit('on-refresh');
+
+          _this.$toast.success(response.message.description, response.message.title);
+        } else {
+          _this.$toast.warning(response.message.description, response.message.title);
+        }
+
+        setTimeout(function () {
+          _this.hide();
+
+          _this.loading = false;
+        }, 1500);
+      });
+    },
+    hide: function hide() {
+      this.$store.commit('Books/showDeleteBookModal', false);
+      this.$store.commit('Books/setBook', null);
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/app/views/books/components/BookEditModal.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/app/views/books/components/BookEditModal.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'book-edit-modal',
+  data: function data() {
+    return {
+      loading: false
+    };
+  },
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
+    book: 'Books/getBook'
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
+    showEditBookModal: function showEditBookModal(state) {
+      return state.Books.showEditBookModal;
+    }
+  })),
+  methods: {
+    submit: function submit() {
+      var _this = this;
+
+      this.loading = true;
+      this.$store.dispatch('Books/updateBook', this.book).then(function (response) {
+        if (response.status) {
+          _this.$toast.success(response.message.description, response.message.title);
+        } else {
+          _this.$toast.warning(response.message.description, response.message.title);
+        }
+
+        setTimeout(function () {
+          _this.hide();
+
+          _this.loading = false;
+        }, 1500);
+      });
+    },
+    hide: function hide() {
+      this.$store.commit('Books/showEditBookModal', false);
+      this.$store.commit('Books/setBook', null);
     }
   }
 });
@@ -2627,8 +2841,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       filter: {
         s: '',
-        order: 'Asc',
-        year: 'Asc',
+        order: null,
+        year: null,
         category_id: 0
       },
       order: ['Asc', 'Desc'],
@@ -2759,7 +2973,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _components_BookCard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/BookCard */ "./resources/js/app/views/books/components/BookCard.vue");
 /* harmony import */ var _components_BookRentModal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/BookRentModal */ "./resources/js/app/views/books/components/BookRentModal.vue");
-/* harmony import */ var _components_BookFilterToolbar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/BookFilterToolbar */ "./resources/js/app/views/books/components/BookFilterToolbar.vue");
+/* harmony import */ var _components_BookEditModal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/BookEditModal */ "./resources/js/app/views/books/components/BookEditModal.vue");
+/* harmony import */ var _components_BookDeleteModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/BookDeleteModal */ "./resources/js/app/views/books/components/BookDeleteModal.vue");
+/* harmony import */ var _components_BookFilterToolbar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/BookFilterToolbar */ "./resources/js/app/views/books/components/BookFilterToolbar.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -2792,6 +3008,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+
+
 
 
 
@@ -2801,7 +3021,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   components: {
     BookCard: _components_BookCard__WEBPACK_IMPORTED_MODULE_1__["default"],
     BookRentModal: _components_BookRentModal__WEBPACK_IMPORTED_MODULE_2__["default"],
-    BookFilterToolbar: _components_BookFilterToolbar__WEBPACK_IMPORTED_MODULE_3__["default"]
+    BookEditModal: _components_BookEditModal__WEBPACK_IMPORTED_MODULE_3__["default"],
+    BookDeleteModal: _components_BookDeleteModal__WEBPACK_IMPORTED_MODULE_4__["default"],
+    BookFilterToolbar: _components_BookFilterToolbar__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   data: function data() {
     return {
@@ -2820,6 +3042,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     onSearch: function onSearch(params) {
       this.params = params;
+      this.$store.dispatch('Books/getBooks', this.params);
+    },
+    onRefresh: function onRefresh() {
       this.$store.dispatch('Books/getBooks', this.params);
     }
   },
@@ -22514,16 +22739,6 @@ var render = function () {
         [
           _c("v-toolbar-title", [_vm._v("\n            Usuarios\n        ")]),
           _vm._v(" "),
-          _c(
-            "v-btn",
-            { staticClass: "ml-2 text-button", attrs: { color: "primary" } },
-            [
-              _c("v-icon", [_vm._v("mdi-plus")]),
-              _vm._v("\n            Agregar\n        "),
-            ],
-            1
-          ),
-          _vm._v(" "),
           _c("v-spacer"),
           _vm._v(" "),
           _c(
@@ -22966,7 +23181,14 @@ var render = function () {
               _c("span", { staticClass: "ml-2 mr-2 text-overline" }, [
                 _vm._v(" " + _vm._s(_vm.item.publisher_date)),
               ]),
-              _vm._v(" "),
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "d-flex align-center" },
+            [
               _c("v-icon", [_vm._v("mdi-book-open")]),
               _c("span", { staticClass: "ml-2 text-overline" }, [
                 _vm._v(" " + _vm._s(_vm.item.pages)),
@@ -22981,7 +23203,7 @@ var render = function () {
             1
           ),
           _vm._v(" "),
-          _vm.permissions.update || _vm.permissions.delete
+          (_vm.permissions.update || _vm.permissions.delete) && _vm.showActions
             ? _c(
                 "div",
                 { staticClass: "mt-2 mb-2 d-flex justify-space-between" },
@@ -22991,6 +23213,11 @@ var render = function () {
                         "v-btn",
                         {
                           attrs: { rounded: "", dark: "", color: "light-blue" },
+                          on: {
+                            click: function ($event) {
+                              return _vm.showEdit()
+                            },
+                          },
                         },
                         [
                           _c("v-icon", [_vm._v("mdi-pencil")]),
@@ -23003,7 +23230,14 @@ var render = function () {
                   _vm.permissions.delete
                     ? _c(
                         "v-btn",
-                        { attrs: { rounded: "", dark: "", color: "red" } },
+                        {
+                          attrs: { rounded: "", dark: "", color: "red" },
+                          on: {
+                            click: function ($event) {
+                              return _vm.showDelete()
+                            },
+                          },
+                        },
                         [
                           _c("v-icon", [_vm._v("mdi-delete")]),
                           _vm._v("\n                Eliminar\n            "),
@@ -23059,6 +23293,244 @@ var render = function () {
         ],
         1
       ),
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/app/views/books/components/BookDeleteModal.vue?vue&type=template&id=587398b2&":
+/*!**********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/app/views/books/components/BookDeleteModal.vue?vue&type=template&id=587398b2& ***!
+  \**********************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-dialog",
+    {
+      attrs: { "max-width": "360", persistent: "" },
+      model: {
+        value: _vm.showDeleteBookModal,
+        callback: function ($$v) {
+          _vm.showDeleteBookModal = $$v
+        },
+        expression: "showDeleteBookModal",
+      },
+    },
+    [
+      _vm.book
+        ? _c(
+            "v-card",
+            [
+              _c(
+                "v-toolbar",
+                { attrs: { dense: "" } },
+                [_c("v-toolbar-title", [_vm._v("Eliminar libro:")])],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-card-text",
+                { staticClass: "mt-4" },
+                [
+                  _c("h5", { staticClass: "text-h6 pa-3 text-center" }, [
+                    _vm._v(
+                      "\n            " +
+                        _vm._s(_vm.book.title) +
+                        "\n            "
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c("v-img", {
+                    attrs: { "aspect-ratio": 9 / 12, src: _vm.book.thumbnail },
+                  }),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-card-actions",
+                [
+                  _c(
+                    "v-btn",
+                    {
+                      staticClass: "text-button",
+                      attrs: { large: "", text: "", disabled: _vm.loading },
+                      on: {
+                        click: function ($event) {
+                          return _vm.hide()
+                        },
+                      },
+                    },
+                    [_vm._v("\n                Cancelar\n            ")]
+                  ),
+                  _vm._v(" "),
+                  _c("v-spacer"),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      staticClass: "text-button",
+                      attrs: {
+                        dark: "",
+                        expanded: "",
+                        large: "",
+                        loading: _vm.loading,
+                        color: "red",
+                      },
+                      on: {
+                        click: function ($event) {
+                          return _vm.submit()
+                        },
+                      },
+                    },
+                    [_vm._v("\n                Eliminar\n            ")]
+                  ),
+                ],
+                1
+              ),
+            ],
+            1
+          )
+        : _vm._e(),
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/app/views/books/components/BookEditModal.vue?vue&type=template&id=5eaebd9a&":
+/*!********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/app/views/books/components/BookEditModal.vue?vue&type=template&id=5eaebd9a& ***!
+  \********************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-dialog",
+    {
+      attrs: { "max-width": "360", persistent: "" },
+      model: {
+        value: _vm.showEditBookModal,
+        callback: function ($$v) {
+          _vm.showEditBookModal = $$v
+        },
+        expression: "showEditBookModal",
+      },
+    },
+    [
+      _vm.book
+        ? _c(
+            "v-card",
+            [
+              _c(
+                "v-toolbar",
+                { attrs: { dense: "" } },
+                [_c("v-toolbar-title", [_vm._v("Editar libro:")])],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-card-text",
+                { staticClass: "mt-4" },
+                [
+                  _c("v-textarea", {
+                    attrs: { label: "Titulo", rows: "3" },
+                    model: {
+                      value: _vm.book.title,
+                      callback: function ($$v) {
+                        _vm.$set(_vm.book, "title", $$v)
+                      },
+                      expression: "book.title",
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c("v-text-field", {
+                    attrs: { label: "Año" },
+                    model: {
+                      value: _vm.book.publisher_date,
+                      callback: function ($$v) {
+                        _vm.$set(_vm.book, "publisher_date", $$v)
+                      },
+                      expression: "book.publisher_date",
+                    },
+                  }),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-card-actions",
+                [
+                  _c(
+                    "v-btn",
+                    {
+                      staticClass: "text-button",
+                      attrs: { large: "", text: "", disabled: _vm.loading },
+                      on: {
+                        click: function ($event) {
+                          return _vm.hide()
+                        },
+                      },
+                    },
+                    [_vm._v("\n                Cancelar\n            ")]
+                  ),
+                  _vm._v(" "),
+                  _c("v-spacer"),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      staticClass: "text-button",
+                      attrs: {
+                        dark: "",
+                        expanded: "",
+                        large: "",
+                        loading: _vm.loading,
+                        color: "green",
+                      },
+                      on: {
+                        click: function ($event) {
+                          return _vm.submit()
+                        },
+                      },
+                    },
+                    [_vm._v("\n                Guardar\n            ")]
+                  ),
+                ],
+                1
+              ),
+            ],
+            1
+          )
+        : _vm._e(),
     ],
     1
   )
@@ -23371,7 +23843,11 @@ var render = function () {
                 },
                 [
                   _c("book-card", {
-                    attrs: { item: row, permissions: _vm.permissions },
+                    attrs: {
+                      item: row,
+                      permissions: _vm.permissions,
+                      showActions: true,
+                    },
                   }),
                 ],
                 1
@@ -23411,6 +23887,10 @@ var render = function () {
       ),
       _vm._v(" "),
       _c("book-rent-modal"),
+      _vm._v(" "),
+      _c("book-edit-modal"),
+      _vm._v(" "),
+      _c("book-delete-modal", { on: { "on-refresh": _vm.onRefresh } }),
     ],
     1
   )
@@ -23481,7 +23961,11 @@ var render = function () {
                 },
                 [
                   _c("book-card", {
-                    attrs: { item: row, permissions: _vm.permissions },
+                    attrs: {
+                      item: row,
+                      permissions: _vm.permissions,
+                      showActions: false,
+                    },
                   }),
                 ],
                 1
@@ -87645,6 +88129,27 @@ __webpack_require__.r(__webpack_exports__);
         reject(failure);
       });
     });
+  },
+  updateBook: function updateBook(_ref4, data) {
+    var commit = _ref4.commit;
+    return new Promise(function (resolve, reject) {
+      axios.put("books/".concat(data.id), data).then(function (response) {
+        commit('updateBook', response.data.data.book);
+        resolve(response.data);
+      })["catch"](function (failure) {
+        reject(failure);
+      });
+    });
+  },
+  deleteBook: function deleteBook(_ref5, data) {
+    var commit = _ref5.commit;
+    return new Promise(function (resolve, reject) {
+      axios["delete"]("books/".concat(data.id), data).then(function (response) {
+        resolve(response.data);
+      })["catch"](function (failure) {
+        reject(failure);
+      });
+    });
   }
 });
 
@@ -87672,8 +88177,17 @@ __webpack_require__.r(__webpack_exports__);
   getRentBook: function getRentBook(state) {
     return state.rentBook;
   },
+  getBook: function getBook(state) {
+    return state.book;
+  },
   showRentBookModal: function showRentBookModal(state) {
     return state.showRentBookModal;
+  },
+  showEditBookModal: function showEditBookModal(state) {
+    return state.showEditBookModal;
+  },
+  showDeleteBookModal: function showDeleteBookModal(state) {
+    return state.showDeleteBookModal;
   }
 });
 
@@ -87728,11 +88242,20 @@ __webpack_require__.r(__webpack_exports__);
   setCategories: function setCategories(state, data) {
     state.categories = data;
   },
+  setBook: function setBook(state, book) {
+    state.book = book;
+  },
   setRentBook: function setRentBook(state, book) {
     state.rentBook = book;
   },
   showRentBookModal: function showRentBookModal(state, show) {
     state.showRentBookModal = show;
+  },
+  showEditBookModal: function showEditBookModal(state, show) {
+    state.showEditBookModal = show;
+  },
+  showDeleteBookModal: function showDeleteBookModal(state, show) {
+    state.showDeleteBookModal = show;
   },
   updateBook: function updateBook(state, book) {
     state.books.data.map(function (stateBook) {
@@ -87757,14 +88280,18 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
+  book: null,
   books: {
     total: 0,
     data: []
   },
   myBooks: [],
-  rentBook: null,
   categories: [],
-  showRentBookModal: false
+  rentBook: null,
+  editBook: null,
+  showEditBookModal: false,
+  showRentBookModal: false,
+  showDeleteBookModal: false
 });
 
 /***/ }),
@@ -88386,6 +88913,144 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BookCard_vue_vue_type_template_id_5582f950_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BookCard_vue_vue_type_template_id_5582f950_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/app/views/books/components/BookDeleteModal.vue":
+/*!*********************************************************************!*\
+  !*** ./resources/js/app/views/books/components/BookDeleteModal.vue ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _BookDeleteModal_vue_vue_type_template_id_587398b2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BookDeleteModal.vue?vue&type=template&id=587398b2& */ "./resources/js/app/views/books/components/BookDeleteModal.vue?vue&type=template&id=587398b2&");
+/* harmony import */ var _BookDeleteModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BookDeleteModal.vue?vue&type=script&lang=js& */ "./resources/js/app/views/books/components/BookDeleteModal.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _BookDeleteModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _BookDeleteModal_vue_vue_type_template_id_587398b2___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _BookDeleteModal_vue_vue_type_template_id_587398b2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/app/views/books/components/BookDeleteModal.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/app/views/books/components/BookDeleteModal.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************!*\
+  !*** ./resources/js/app/views/books/components/BookDeleteModal.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BookDeleteModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./BookDeleteModal.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/app/views/books/components/BookDeleteModal.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BookDeleteModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/app/views/books/components/BookDeleteModal.vue?vue&type=template&id=587398b2&":
+/*!****************************************************************************************************!*\
+  !*** ./resources/js/app/views/books/components/BookDeleteModal.vue?vue&type=template&id=587398b2& ***!
+  \****************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BookDeleteModal_vue_vue_type_template_id_587398b2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./BookDeleteModal.vue?vue&type=template&id=587398b2& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/app/views/books/components/BookDeleteModal.vue?vue&type=template&id=587398b2&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BookDeleteModal_vue_vue_type_template_id_587398b2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BookDeleteModal_vue_vue_type_template_id_587398b2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/app/views/books/components/BookEditModal.vue":
+/*!*******************************************************************!*\
+  !*** ./resources/js/app/views/books/components/BookEditModal.vue ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _BookEditModal_vue_vue_type_template_id_5eaebd9a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BookEditModal.vue?vue&type=template&id=5eaebd9a& */ "./resources/js/app/views/books/components/BookEditModal.vue?vue&type=template&id=5eaebd9a&");
+/* harmony import */ var _BookEditModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BookEditModal.vue?vue&type=script&lang=js& */ "./resources/js/app/views/books/components/BookEditModal.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _BookEditModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _BookEditModal_vue_vue_type_template_id_5eaebd9a___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _BookEditModal_vue_vue_type_template_id_5eaebd9a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/app/views/books/components/BookEditModal.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/app/views/books/components/BookEditModal.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/app/views/books/components/BookEditModal.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BookEditModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./BookEditModal.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/app/views/books/components/BookEditModal.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BookEditModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/app/views/books/components/BookEditModal.vue?vue&type=template&id=5eaebd9a&":
+/*!**************************************************************************************************!*\
+  !*** ./resources/js/app/views/books/components/BookEditModal.vue?vue&type=template&id=5eaebd9a& ***!
+  \**************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BookEditModal_vue_vue_type_template_id_5eaebd9a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./BookEditModal.vue?vue&type=template&id=5eaebd9a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/app/views/books/components/BookEditModal.vue?vue&type=template&id=5eaebd9a&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BookEditModal_vue_vue_type_template_id_5eaebd9a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BookEditModal_vue_vue_type_template_id_5eaebd9a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

@@ -16,7 +16,7 @@
                 <v-col cols="12" sm="6" md="4" lg="3" xl="2"
                     v-for="( row , index ) in books"
                     :key="index">
-                    <book-card :item="row" :permissions="permissions"></book-card>
+                    <book-card :item="row" :permissions="permissions" :showActions="false"></book-card>
                 </v-col>
             </v-row>
         </v-container>
