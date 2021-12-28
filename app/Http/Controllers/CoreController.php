@@ -29,7 +29,7 @@ class CoreController extends Controller
             if ( $token ):
                 $user = JWTAuth::parseToken()->authenticate();
                 $this->user = $user;
-                $this->role = Sentinel::findById( $user->id )->roles()->get();
+                $this->role = Sentinel::findById( $user->id )->roles()->get()->first();
             endif;
         } catch ( \Exception $e ) {
             return false;
@@ -42,7 +42,10 @@ class CoreController extends Controller
 		$user = JWTAuth::parseToken()->authenticate();
 
         return $user;
-		return $this->user;
+    }
+    private function getPermissions(  )
+	{
+        return $this->role->permissions;
     }
     public function checkRole( $role )
 	{
@@ -93,7 +96,7 @@ class CoreController extends Controller
         return response()->json([
             'message'       => $this->message ,
             'data'          => $this->data ,
-            'permissions'   => $this->permissions ,
+            'permissions'   => $this->getPermissions(),
             'status'        => $this->status ,
             'route'         => $this->route
         ]);

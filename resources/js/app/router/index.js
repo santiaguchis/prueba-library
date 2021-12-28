@@ -2,11 +2,12 @@ import Vue from 'vue'
 import VueRouter from 'vue-router';
 import store from '../store/index';
 // Layout
-import PublicLayout from '../modules/Shared/layouts/Public';
-import MainLayout from '../modules/Shared/layouts/Main';
-//Modules
+import PublicLayout from '../components/layouts/Public';
+import MainLayout from '../components/layouts/Main';
+//Routing
 import AppRouting from './routing';
-import AuthRouting from '../modules/Auth/routing';
+//Other Pages
+import LoginPage from '../views/auth/pages/LoginPage';
 // Injects
 Vue.use( VueRouter )
 
@@ -21,7 +22,11 @@ const routes = [
         component : PublicLayout,
         meta: { guest: true },
         children : [
-            ...AuthRouting
+            {
+                path        : 'login',
+                name        : 'auth.login',
+                component   : LoginPage
+            }
         ]
     },
     {

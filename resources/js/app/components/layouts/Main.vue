@@ -3,7 +3,7 @@
         <v-main>
             <menu-component></menu-component>
             <router-view></router-view>
-            <v-overlay absolute
+            <v-overlay fixed
                 v-if="loading">
                 <v-progress-circular
                     indeterminate
@@ -19,14 +19,12 @@
 <script>
 import { mapState } from 'vuex';
 
-import HeaderComponent from '../components/Header.vue';
-import MenuComponent from '../components/Menu.vue';
-import LogoutComponent from '../components/Logout.vue';
+import MenuComponent    from '../shared/Menu.vue';
+import LogoutComponent  from '../shared/Logout.vue';
 export default {
     components : {
-        'header-component' : HeaderComponent,
-        'menu-component' : MenuComponent,
-        'logout-component' : LogoutComponent,
+        MenuComponent,
+        LogoutComponent,
     },
     computed: {
         ...mapState({

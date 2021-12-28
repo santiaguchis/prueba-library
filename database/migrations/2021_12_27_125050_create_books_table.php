@@ -18,7 +18,7 @@ class CreateBooksTable extends Migration
             $table->integer('category_id');
             $table->string('title');
             $table->string('author');
-            $table->integer('avalaible');
+            $table->integer('available');
             $table->string('thumbnail');
             $table->integer('pages');
             $table->string('publisher_date');

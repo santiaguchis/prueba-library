@@ -35,7 +35,7 @@
                 class="elevation-1"
                 >
 
-                <template v-slot:item.actions="{ item , key }">
+                <template v-slot:item.actions="{ item }">
                     <div >
                         <v-btn
                             @click="editItem(item)"

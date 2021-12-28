@@ -30,11 +30,19 @@ class BookController extends CoreController
         if ( $request->has('category_id') && $request->category_id > 0 ) :
             $query->where('category_id' , $request->category_id );
         endif;
-        
+        $query->with('category');
+        $query->orderBy( 'publisher_date' , $q['order'] );
         $query->orderBy( 'title' , $q['order'] );
 
 		$rows = $query->paginate( $q['take'] );
-
+        foreach( $rows as $row ) :
+            $row->show_available = true;
+            foreach( $row->users()->get() as $user ) : 
+                if ( $user->id == $this->getUser()->id ) :
+                    $row->show_available = false;
+                endif;
+            endforeach;
+        endforeach;
 		$this->addData( 'rows' , $rows );
 		$this->addData( 'categories' , Category::orderBy('name' , 'Asc')->get() );
 		return $this->result();
@@ -44,35 +52,5 @@ class BookController extends CoreController
 
 		$this->addData( 'rows' , $this->getUser()->books );
 		return $this->result();
-    }
-    public function seed()
-    {
-        $client = new \GuzzleHttp\Client();
-        $request = $client->get('https://www.etnassoft.com/api/v1/get/?criteria=most_viewed&num_items=100&json=true');
-        $response = (string) $request->getBody();
-        $response = str_replace( ["\r","\n"],"", $response );
-        $response = implode( ["\r","\n"], $response );
-        foreach( json_decode( $response ) as $book ) :
-            $category = $book->categories[0]; 
-            $newBook = Book::create([
-                'id' => $book->ID,
-                'title' => $book->title,
-                'author' => $book->author,
-                'content' => $book->content_short,
-                'pages' => $book->pages,
-                'publisher_date' => $book->publisher_date,
-                'thumbnail' => $book->thumbnail,
-                'language' => $book->language,
-                'avalaible' => 5,
-                'category_id' => $category->category_id
-            ]);
-            if ( !Category::find( $category->category_id ) ) :
-                Category::create([
-                    'id' => $category->category_id,
-                    'name' => $category->name
-                ]);
-            endif;
-        endforeach;
-        return response()->json( json_decode( $response ) );
     }
 }

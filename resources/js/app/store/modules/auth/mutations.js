@@ -13,4 +13,7 @@ export default {
         state.token = null
         state.user = null
     },
+    setPermissions( state , data ) {
+        state.permissions = data;
+    }
 }

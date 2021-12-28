@@ -13,7 +13,7 @@ class Book extends Model
         'category_id',
         'title',
         'author',
-        'avalaible',
+        'available',
         'thumbnail',
         'pages',
         'publisher_date',
@@ -23,5 +23,9 @@ class Book extends Model
     public function users()
     {
         return $this->belongsToMany('App\Entities\Auth\User', 'book_user', 'book_id', 'user_id');
+    }
+    public function category()
+    {
+        return $this->hasOne('App\Entities\Category', 'id', 'category_id');
     }
 }

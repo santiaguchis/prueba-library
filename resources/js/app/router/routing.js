@@ -1,24 +1,18 @@
 // Imports Pages to routes.
-import HomePage			    from '../modules/Home/pages/IndexPage';
-import RentPage			    from '../modules/Home/pages/RentPage';
-import BooksPage			from '../modules/Home/pages/BooksPage';
-import UsersPage		    from '../modules/User/pages/IndexPage';
+import BooksPage	from '../views/books/pages/Books';
+import MyBooksPage	from '../views/myBooks/pages/myBooks';
+import UsersPage	from '../modules/User/pages/IndexPage';
 
 const routes = [
 	{
 		path		: '',
 		name		: 'home',
-		component	: HomePage,
-	},
-	{
-		path		: 'rents',
-		name		: 'rents',
-		component	: RentPage,
+		component	: BooksPage,
 	},
 	{
 		path		: 'my-books',
 		name		: 'mybooks',
-		component	: BooksPage,
+		component	: MyBooksPage,
 	},
 	{
 		path		: 'usuarios',
